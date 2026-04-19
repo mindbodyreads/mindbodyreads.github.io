@@ -31,7 +31,6 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.4rem 
 .hero-orb { position: absolute; width: 650px; height: 650px; border-radius: 50%; background: radial-gradient(circle, rgba(201,169,110,0.13) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%,-50%); animation: pulse 6s ease-in-out infinite; pointer-events: none; }
 @keyframes pulse { 0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.8} 50%{transform:translate(-50%,-50%) scale(1.1);opacity:1} }
 @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
-
 .hero-eyebrow { font-size: 0.7rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(–gold); margin-bottom: 2rem; opacity: 0; animation: fadeUp 1s 0.3s forwards; }
 .hero-title { font-family: ‘Cormorant Garamond’, serif; font-size: clamp(3rem, 8vw, 6rem); font-weight: 300; line-height: 1.08; color: var(–white); margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 1s 0.5s forwards; }
 .hero-title em { font-style: italic; color: var(–gold); }
@@ -49,41 +48,79 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.4rem 
 .section-title { font-family: ‘Cormorant Garamond’,serif; font-size: clamp(2rem,5vw,3.2rem); font-weight: 300; line-height: 1.15; color: var(–white); margin-bottom: 1.2rem; }
 .section-title em { font-style: italic; color: var(–gold); }
 
-/* BOOKS */
+/* BOOKS — strict equal height 2x2 */
 .books-section { padding: 6rem 2rem; background: var(–surface); }
 .books-inner { max-width: 960px; margin: 0 auto; }
 .books-header { text-align: center; margin-bottom: 3rem; }
 .books-header p { color: #B8B8CC; font-size: 0.9rem; max-width: 480px; margin: 0 auto; line-height: 1.8; }
-.books-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: rgba(201,169,110,0.08); }
 
-.book-card { background: var(–ink); padding: 2.5rem 2rem; text-decoration: none; color: inherit; display: flex; flex-direction: column; position: relative; transition: background 0.3s; }
+.books-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+grid-auto-rows: 1fr;
+gap: 3px;
+background: rgba(201,169,110,0.08);
+}
+
+.book-card {
+background: var(–ink);
+padding: 2rem 1.8rem;
+text-decoration: none;
+color: inherit;
+display: grid;
+grid-template-rows: auto auto 1fr auto;
+gap: 0;
+position: relative;
+transition: background 0.3s;
+min-height: 260px;
+}
 .book-card::after { content:’’; position:absolute; bottom:0; left:0; right:0; height:2px; background:var(–gold); transform:scaleX(0); transition:transform 0.35s; }
 .book-card:hover { background: #1C1C28; }
 .book-card:hover::after { transform: scaleX(1); }
-.book-tag { font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(–gold); margin-bottom: 1rem; display: block; }
-.book-title { font-family: ‘Cormorant Garamond’,serif; font-size: 1.35rem; font-weight: 400; line-height: 1.35; margin-bottom: 0.8rem; color: #F0EDE8; }
-.book-desc { font-size: 0.82rem; color: #A8A8BC; line-height: 1.7; margin-bottom: 1.5rem; flex: 1; }
-.book-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; }
-.book-price { font-family: ‘Cormorant Garamond’,serif; font-size: 1.8rem; color: var(–gold); font-weight: 300; }
-.book-buy { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: #888899; border: 1px solid rgba(201,169,110,0.25); padding: 0.45rem 1rem; transition: all 0.3s; white-space: nowrap; }
+
+.book-tag { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(–gold); margin-bottom: 0.7rem; display: block; }
+.book-title { font-family: ‘Cormorant Garamond’,serif; font-size: 1.25rem; font-weight: 400; line-height: 1.3; margin-bottom: 0.7rem; color: #F0EDE8; }
+.book-desc { font-size: 0.8rem; color: #A8A8BC; line-height: 1.65; padding-bottom: 1.2rem; align-self: start; }
+.book-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 1rem; border-top: 1px solid rgba(201,169,110,0.08); }
+.book-price { font-family: ‘Cormorant Garamond’,serif; font-size: 1.7rem; color: var(–gold); font-weight: 300; }
+.book-buy { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: #888899; border: 1px solid rgba(201,169,110,0.2); padding: 0.4rem 0.9rem; transition: all 0.3s; white-space: nowrap; }
 .book-card:hover .book-buy { color: var(–gold); border-color: var(–gold); }
 
-/* RESOURCES */
+/* RESOURCES — no divider line, clean */
 .resources-section { padding: 6rem 2rem; max-width: 960px; margin: 0 auto; }
 .resources-header { text-align: center; margin-bottom: 3rem; }
 .resources-header p { color: #B0B0C4; font-size: 0.92rem; line-height: 1.8; max-width: 540px; margin: 0.5rem auto 0; }
-.resources-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: rgba(201,169,110,0.08); }
 
-.resource-card { background: var(–ink); padding: 2.8rem 2.2rem; text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 1rem; transition: background 0.3s; }
+.resources-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+grid-auto-rows: 1fr;
+gap: 3px;
+background: rgba(201,169,110,0.08);
+}
+
+.resource-card {
+background: var(–ink);
+padding: 2.5rem 2rem;
+text-decoration: none;
+color: inherit;
+display: grid;
+grid-template-rows: auto auto auto 1fr auto;
+gap: 0.8rem;
+transition: background 0.3s;
+position: relative;
+}
 .resource-card:hover { background: #1C1C28; }
-.resource-badge { display: inline-block; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: #0A0A0F; background: var(–gold); padding: 0.28rem 0.7rem; align-self: flex-start; }
-.resource-icon { width: 48px; height: 48px; border: 1px solid rgba(201,169,110,0.3); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
-.resource-title { font-family: ‘Cormorant Garamond’,serif; font-size: 1.7rem; font-weight: 300; color: #F0EDE8; line-height: 1.2; }
-.resource-desc { font-size: 0.85rem; color: #A8A8BC; line-height: 1.75; flex: 1; }
-.resource-cta { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(–gold); border-bottom: 1px solid rgba(201,169,110,0.3); padding-bottom: 0.2rem; align-self: flex-start; transition: gap 0.3s; margin-top: auto; }
+
+/* No badge — removed to avoid the line look */
+.resource-label { font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(–gold); }
+.resource-icon { width: 44px; height: 44px; border: 1px solid rgba(201,169,110,0.25); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+.resource-title { font-family: ‘Cormorant Garamond’,serif; font-size: 1.6rem; font-weight: 300; color: #F0EDE8; line-height: 1.2; }
+.resource-desc { font-size: 0.83rem; color: #A8A8BC; line-height: 1.75; align-self: start; }
+.resource-cta { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(–gold); padding-top: 0.5rem; align-self: end; transition: gap 0.3s; }
 .resource-card:hover .resource-cta { gap: 0.9rem; }
 
-/* ABOUT — text only, no frame */
+/* ABOUT */
 .about-section { padding: 6rem 2rem; background: var(–surface); }
 .about-inner { max-width: 960px; margin: 0 auto; text-align: center; }
 .about-inner .section-title { max-width: 600px; margin: 0 auto 1.5rem; }
@@ -109,8 +146,8 @@ footer { display: flex; justify-content: space-between; align-items: center; max
 @media (max-width: 700px) {
 nav { padding: 1rem 1.2rem; }
 .nav-links { display: none; }
-.books-grid { grid-template-columns: 1fr; }
-.resources-grid { grid-template-columns: 1fr; }
+.books-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
+.resources-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
 .stats { flex-wrap: wrap; }
 .stat { min-width: 50%; border-right: none; border-bottom: 1px solid rgba(201,169,110,0.1); }
 footer { flex-direction: column; text-align: center; }
@@ -119,8 +156,6 @@ footer { flex-direction: column; text-align: center; }
 
 </head>
 <body>
-
-<!-- NAV -->
 
 <nav>
   <a href="#" class="nav-logo">MindBodyReads</a>
@@ -131,8 +166,6 @@ footer { flex-direction: column; text-align: center; }
   </ul>
 </nav>
 
-<!-- HERO -->
-
 <div class="hero">
   <div class="hero-orb"></div>
   <p class="hero-eyebrow">Brain Health · Mental Clarity · Women 35+</p>
@@ -140,17 +173,9 @@ footer { flex-direction: column; text-align: center; }
   <p class="hero-sub">Science-backed books and resources to help women reclaim focus, sharpen memory, and unlock their full cognitive potential — at any age.</p>
 </div>
 
-<!-- STATS -->
-
 <div class="stats">
-  <div class="stat reveal">
-    <div class="stat-number">49+</div>
-    <div class="stat-label">Readers This Month</div>
-  </div>
-  <div class="stat reveal">
-    <div class="stat-number">5</div>
-    <div class="stat-label">Published Titles</div>
-  </div>
+  <div class="stat reveal"><div class="stat-number">49+</div><div class="stat-label">Readers This Month</div></div>
+  <div class="stat reveal"><div class="stat-number">5</div><div class="stat-label">Published Titles</div></div>
 </div>
 
 <!-- BOOKS -->
@@ -211,7 +236,7 @@ footer { flex-direction: column; text-align: center; }
 
 ```
 <a href="https://mindbodyreads.github.io/genuis-wave-review-women-over-40/" target="_blank" rel="noopener" class="resource-card reveal">
-  <span class="resource-badge">Editor's Pick</span>
+  <span class="resource-label">Editor's Pick</span>
   <div class="resource-icon">🧠</div>
   <h3 class="resource-title">The Genius Wave</h3>
   <p class="resource-desc">A 7-minute daily brain wave audio program that activates your natural genius state. Reviewed specifically for women over 40 — backed by NASA research on Theta waves.</p>
@@ -219,7 +244,7 @@ footer { flex-direction: column; text-align: center; }
 </a>
 
 <a href="https://mindbodyreads.github.io/billionaire-brain-wave-review-CIA-research-hippocampus-sound-frequency-7-minute-wealth-ritual/" target="_blank" rel="noopener" class="resource-card reveal">
-  <span class="resource-badge">Top Rated</span>
+  <span class="resource-label">Top Rated</span>
   <div class="resource-icon">⚡</div>
   <h3 class="resource-title">Billionaire Brain Wave</h3>
   <p class="resource-desc">Theta wave audio technology that rewires subconscious thought patterns for abundance, mental clarity, and peak cognitive performance — used by over 19,000 people.</p>
@@ -230,7 +255,7 @@ footer { flex-direction: column; text-align: center; }
   </div>
 </div>
 
-<!-- ABOUT — clean text only, no frame -->
+<!-- ABOUT -->
 
 <div class="about-section" id="about">
   <div class="about-inner reveal">
